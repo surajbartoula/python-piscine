@@ -8,7 +8,9 @@ def slice_me(family: list, start: int, end: int) -> list:
         family (list): A 2D list representing rows of data
         start (int): The starting index for the slice
         end (int): The ending index for the slice.
-    Returns: Sliced nested list."""
+    Returns:
+        Sliced nested list.
+    """
     if not isinstance(family, list):
         raise TypeError("The 'family' parameter must be list.")
     if not isinstance(start, int) or not isinstance(end, int):
