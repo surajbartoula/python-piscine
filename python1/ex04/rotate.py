@@ -1,4 +1,4 @@
-"""Module to crop, convert to grayscale and display a specific image zone."""
+"""Module to manually transpose a cropped grayscale image section."""
 import matplotlib.pyplot as plt
 import numpy as np
 from load_image import ft_load
@@ -29,29 +29,44 @@ def ft_grayscale(img: np.ndarray) -> np.ndarray:
     return grayscale_img.astype(np.uint8)
 
 
-def zoom_image():
-    """Load animal.jpeg, apply spatial slicing/grayscale and show the output."""
+def ft_transpose(img: np.ndarray) -> np.ndarray:
+    """Manually transpose a 2D matrix
+    Args:
+        img (np.ndarray): The 2D source matrix.
+    Returns:
+        np.ndarray: The manually transposed 2D matrix.
+    """
+    rows, cols = img.shape
+    transposed_list = [
+        [img[r][c] for r in range(rows)]
+        for c in range(cols)
+    ]
+    return np.array(transposed_list, dtype=np.uint8)
+
+
+def transpose_image():
+    """Load an image, crop it and transpose"""
     try:
         original_img = ft_load("animal.jpeg")
-        print(original_img)
         cropped_img = ft_zoom(original_img, zh=400, zw=400)
         grayscale_img = ft_grayscale(cropped_img)
-        # Reshape to explicitly match the required (400, 400, 1)
-        zoomed_array = grayscale_img[:, :, np.newaxis]
-        print(f"New shape after slicing: {zoomed_array.shape}")
-        print(zoomed_array)
-        # Display the img with visible axis
-        plt.imshow(grayscale_img, cmap="gray")
+        print(f"The shape of image is : {grayscale_img.shape}")
+        print(grayscale_img)
+        transposed_img = ft_transpose(grayscale_img)
+        print(f"New shape after Transpose: {transposed_img.shape}")
+        print(transposed_img)
+        # Render the result in grid view
+        plt.imshow(transposed_img, cmap="gray")
         plt.show()
     except (TypeError, ValueError, FileNotFoundError, RuntimeError) as e:
         print(f"An expected error occured: {e}")
     except Exception as e:
-        print(f"An unexpected error occured: {e}")
+        print(f"An unexpected tracking error occurred: {e}")
 
 
 def main():
-    """Main execution block"""
-    zoom_image()
+    """Main execution block."""
+    transpose_image()
 
 
 if __name__ == "__main__":
