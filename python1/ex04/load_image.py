@@ -16,14 +16,14 @@ def ft_load(path: str) -> np.ndarray:
     if not (lower_path.endswith(".jpg") or lower_path.endswith(".jpeg")):
         raise ValueError("Unsupported file format. Only JPG & JPEG allowed.")
     if not os.path.exists(path):
-        raise FileNotFoundError(f"The file assets at '{path} were not found.")
+        raise FileNotFoundError(f"The file assets at '{path}' were not found.")
     try:
         with Image.open(path) as img:
             rgb_img = img.convert("RGB")
             img_array = np.array(rgb_img)
             return img_array
     except Exception as e:
-        raise RuntimeError(f"Failed too process the image: {e}")
+        raise RuntimeError(f"Failed to process the image: {e}")
 
 
 def main():
