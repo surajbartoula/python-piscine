@@ -21,6 +21,8 @@ def ft_load(path: str) -> np.ndarray:
         with Image.open(path) as img:
             rgb_img = img.convert("RGB")
             img_array = np.array(rgb_img)
+            print(f"The shape of image is: {img_array.shape}")
+            print(img_array)
             return img_array
     except Exception as e:
         raise RuntimeError(f"Failed too process the image: {e}")
