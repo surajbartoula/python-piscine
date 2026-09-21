@@ -9,7 +9,7 @@ def ft_load(path: str) -> np.ndarray:
     Args:
         path (str): The file path to the target image.
     Returns:
-        np.ndarray: A 3D array containing the RGB pixel values of the iamge."""
+        np.ndarray: A 3D array containing the RGB pixel values of the image."""
     if not isinstance(path, str):
         raise TypeError("The image path must be a string.")
     lower_path = path.lower()
